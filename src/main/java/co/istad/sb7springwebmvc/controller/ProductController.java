@@ -12,40 +12,19 @@ import java.util.List;
 @RequestMapping("/products")
 @RequiredArgsConstructor
 public class ProductController {
-
-   /* @RequestMapping(method= RequestMethod.GET, value = "/products")
-    public String getProduct(){
-        return "Get all products using long hand.";
-    }*/
-
-    /*@GetMapping("/products")
-    public String getProduct(){
-        return "Get product using shorthand.";
-    }*/
-
     private final ProductService productService;
-
     @GetMapping //get all products
-    public List<Product> getProducts() {
+    public List<Product> loadProducts() {
         return productService.loadProducts();
     }
-    @GetMapping("/{id}/{slug}")
-    public Product getProductById(@PathVariable("id") Integer proId,
-                                  @PathVariable String slug) {
-//        System.out.println("Product id: " + id);
-//        System.out.println("Product slug: " + slug);
+    @GetMapping("/{id}")
+    public Product loadProductById(@PathVariable("id") Integer proId) {
         return productService.loadProductById(proId);
     }
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping //Create new product
     public void createNewProduct(@RequestBody Product product) {
         System.out.println(product);
-//        Product newProduct = Product.builder()
-//                .id(5)
-//                .name("Samsung Ultra23")
-//                .price(1299.0)
-//                .inStock(true)
-//                .build();
         productService.createNewProduct(product);
     }
 
@@ -53,12 +32,6 @@ public class ProductController {
     @PutMapping("/{id}")//Update product
     public void updateOldProduct(@PathVariable Integer id,
                                  @RequestBody Product newProduct) {
-//        System.out.println(newProduct);
-//        Product updateProduct = Product.builder()
-//                .name("SmartWatch Air3")
-//                .price(499.9)
-//                .inStock(false)
-//                .build();
         productService.updateProductById(id, newProduct);
     }
 
