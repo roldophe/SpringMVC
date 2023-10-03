@@ -1,7 +1,6 @@
 package co.istad.sb7springwebmvc.controller;
 
 import co.istad.sb7springwebmvc.model.Category;
-import co.istad.sb7springwebmvc.model.Supplier;
 import co.istad.sb7springwebmvc.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
